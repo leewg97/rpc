@@ -1,9 +1,9 @@
 package paseto
 
 import (
-	"rpc-server/config"
-
 	"github.com/o1egl/paseto"
+	"rpc-server/config"
+	auth "rpc-server/gRPC/proto"
 )
 
 type PasetoMaker struct {
@@ -11,17 +11,15 @@ type PasetoMaker struct {
 	Key []byte
 }
 
-func NewPasetoMaker(cfg config.Config) *PasetoMaker {
-	return &PasetoMaker{
-		Pt:  paseto.NewV2(),
-		Key: []byte(cfg.Paseto.Key),
-	}
+func NewPasetoMaker(cfg *config.Config) *PasetoMaker {
+	return &PasetoMaker{Pt: paseto.NewV2(), Key: []byte(cfg.Paseto.Key)}
 }
 
-func (m *PasetoMaker) CreateNewToken() (string, error) {
-	return "", nil
+func (m *PasetoMaker) CreateNewToken(auth auth.AuthData) (string, error) {
+	return m.Pt.Encrypt(m.Key, auth, nil)
 }
 
 func (m *PasetoMaker) VerifyToken(token string) error {
-	return nil
+	var auth auth.AuthData
+	return m.Pt.Decrypt(token, m.Key, &auth, nil)
 }

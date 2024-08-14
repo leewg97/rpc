@@ -5,9 +5,13 @@ import (
 	"os"
 )
 
-type Config struct{
+type Config struct {
 	Paseto struct {
 		Key string
+	}
+
+	GRPC struct {
+		URL string
 	}
 }
 

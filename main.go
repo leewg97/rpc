@@ -2,8 +2,7 @@ package main
 
 import (
 	"flag"
-	"rpc-server/cmd"
-	"rpc-server/config"
+	"log"
 )
 
 var configFlag = flag.String("config", "./config.toml", "config path")
@@ -11,8 +10,13 @@ var configFlag = flag.String("config", "./config.toml", "config path")
 func main() {
 	flag.Parse()
 
-	// fmt.Println(*configFlag)
-
-	cfg := config.NewConfig(*configFlag)
-	cmd.NewApp(cfg)
+	log.Println("env 경로는 다음과 같다,", *configFlag)
+	//cfg := config.NewConfig(*configFlag)
+	//
+	//if err := server.NewGRPCServer(cfg); err != nil {
+	//	panic(err)
+	//} else {
+	//	time.Sleep(1e9)
+	//	cmd.NewApp(cfg)
+	//}
 }

@@ -9,7 +9,7 @@ message AuthData {
 }
 
 message Verify {
-    ResponseType status =1;
+    ResponseType status = 1;
     AuthData auth = 2;
 }
 
@@ -28,7 +28,7 @@ message CreateTokenRes {
 }
 
 message VerifyTokenReq {
-    string token = 1;
+  string token = 1;
 }
 
 message VerifyTokenRes {
@@ -37,5 +37,5 @@ message VerifyTokenRes {
 
 service AuthService {
     rpc CreateAuth(CreateTokenReq) returns (CreateTokenRes);
-    rpc CreateAuth(VerifyTokenReq) returns (VerifyTokenRes);
+    rpc VerifyAuth(VerifyTokenReq) returns (VerifyTokenRes);
 }

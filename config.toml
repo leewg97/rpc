@@ -1,0 +1,5 @@
+[paseto]
+key = "lkmdsliomfijwlkwjelkfsdlmkflsmdf"
+
+[grpc]
+url = ":1000"
